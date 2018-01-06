@@ -26,3 +26,24 @@
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
 }
+
+.NavBarContainer{
+  height: 50px;
+  background-color: tomato;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+span button {
+  margin: 0 10px;
+  text-decoration: none;
+  color: #000000;
+  font-size: 1.5em;
+  border-radius: 2%;
+}
+span button:hover {
+  border-bottom: solid #000000;
+  border-right: solid black;
+
+}

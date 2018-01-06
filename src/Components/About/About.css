@@ -1,0 +1,12 @@
+.aboutContainer{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.aboutContainer p{
+width: 50%;
+}
+.aboutContainer h3{
+    font-size: 2em;
+}

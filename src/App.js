@@ -1,18 +1,54 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import './App.css';
+import About from './Components/About/About';
+import Home from './Components/Home/Home'
+import Saved from './Components/Saved/Saved'
 
 class App extends Component {
+  constructor() {
+    super();
+    this.state = {
+      home: true,
+      about: null,
+      saved: null
+    }
+    this.changeViewHome=this.changeViewHome.bind(this);
+    this.changeViewSaved=this.changeViewSaved.bind(this);
+    this.changeViewAbout=this.changeViewAbout.bind(this);
+  }
+  changeViewHome(e){
+    this.setState({
+      home:true,
+      about:null,
+      saved:null
+    })
+  };
+  changeViewSaved(e){
+    this.setState({
+      home:null,
+      about:null,
+      saved:true
+    })
+  };
+  changeViewAbout(e){
+    this.setState({
+      home:null,
+      about:true,
+      saved:null
+    })
+  };
+
   render() {
     return (
       <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to React</h1>
-        </header>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
+        <div className='NavBarContainer'>
+          <span><button href="" onClick={this.changeViewHome} >Home</button></span>
+          <span><button href="" onClick={this.changeViewSaved}>Saved</button></span>
+          <span><button href="" onClick={this.changeViewAbout}>About</button></span>
+        </div>
+        {this.state.home && <Home />}
+       {this.state.about && <About />}
+       {this.state.saved && <Saved/>}
       </div>
     );
   }

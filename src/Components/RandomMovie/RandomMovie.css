@@ -1,0 +1,19 @@
+.container{
+    background-color: tomato;
+    border: 3px solid #000000;
+    height: 500px;
+    width:400px;
+    margin: auto;
+    padding: 20px 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+}
+.buttons{
+    height: 30px;
+    width: auto;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+}
