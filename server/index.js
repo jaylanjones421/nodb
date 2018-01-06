@@ -18,4 +18,4 @@ app.get("/api/movies", (req,res)=>{
         return res.send(response.data);
     }).catch(console.log)})
 
-app.listen(port, ()=>console.log(`the server is doing its thang on port ${port}`));
+app.listen(port, ()=>console.log(`the server is browsing memes on port ${port}`));
