@@ -1,15 +1,19 @@
 import React, { Component } from 'react';
 import './MovieCard.css';
 class MovieCard extends Component {
-
+    constructor(props){
+        super(props);
+    }
+    componentWillReceiveProps(){
+    }
     render() {
         return (
             <div className='cardContainer'>
                 <div className="pic">
-                    <img src="" alt=""/>
+                    <img src={this.props.pic} alt=""/>
                 </div>
-                <h2>Title</h2>
-                <p>description</p>
+                <h2>{this.props.name}</h2>
+                <p>{this.props.desc}</p>
                 
             </div>
         );

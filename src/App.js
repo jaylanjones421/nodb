@@ -10,8 +10,11 @@ class App extends Component {
     this.state = {
       home: true,
       about: null,
-      saved: null
+      saved: null,
+      savedMovies:[]
     }
+
+    this.saveMovie=this.saveMovie.bind(this)
     this.changeViewHome=this.changeViewHome.bind(this);
     this.changeViewSaved=this.changeViewSaved.bind(this);
     this.changeViewAbout=this.changeViewAbout.bind(this);
@@ -38,6 +41,24 @@ class App extends Component {
     })
   };
 
+  saveMovie(state){
+    let savedMovies = this.state.savedMovies
+    let movie ={
+        name:state.originalTitle,
+        description:state.overview,
+        picture:state.picture
+    }
+    
+    savedMovies.push(movie)
+    console.log(savedMovies)
+    this.setState({
+        savedMovies
+    })
+  };
+  deleteMovie(state,i){
+    
+  };
+
   render() {
     return (
       <div className="App">
@@ -46,9 +67,9 @@ class App extends Component {
           <span><button href="" onClick={this.changeViewSaved}>Saved</button></span>
           <span><button href="" onClick={this.changeViewAbout}>About</button></span>
         </div>
-        {this.state.home && <Home />}
+        {this.state.home && <Home save={(state)=> this.saveMovie(state)}/>}
        {this.state.about && <About />}
-       {this.state.saved && <Saved/>}
+       {this.state.saved && <Saved savedMovies={this.state.savedMovies}/>}
       </div>
     );
   }

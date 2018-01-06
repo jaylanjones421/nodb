@@ -1,33 +1,29 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import MovieCard from './../MovieCard/MovieCard'
-import './RandomMovie.css'
+import MovieCard from './../MovieCard/MovieCard';
+import './RandomMovie.css';
+import config from '../../config';
 
 
 
 class RandomMovie extends Component {
-    constructor(){
-        super();
+    constructor(props){
+        super(props);
         this.state={
-            movieName:'',
-            movieImg:'',
+            original_title:props.originalTitle,
+            overview:props.overview,
+            backdrop_path:`https://image.tmdb.org/t/p/w300${props.backdropPath}`
         }
     }
-    
-    componentDidMount(url){
-        axios.get()
-        .then(res=>{
-            console.log(res.results)
-        })
-    }
+
     render() {
         return (
             <div className='container'>
-                <MovieCard/>
+                <MovieCard name={this.props.originalTitle} pic={`https://image.tmdb.org/t/p/w300${this.props.picture}`} desc={this.props.overview}/>
                 
                 <div className="buttons">
-                <span><button>Save</button></span>
-                <span><button>Next</button></span>
+                <span><button onClick={() => this.props.save({...this.props})}>Save</button></span>
+                <span><button onClick={this.props.randomMovie} >Next</button></span>
                 </div>
                 
             </div>

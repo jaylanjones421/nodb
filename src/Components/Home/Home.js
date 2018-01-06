@@ -4,22 +4,42 @@ import RandomMovie from './../RandomMovie/RandomMovie';
 import axios from 'axios';
 
 
-
 class Home extends Component {
     constructor(){
         super();
         this.state = {
-            results:[]
+            results:[],
+            name:'',
+            description:'',
+            picture:'',
+            saved:[]
         }
+        this.randomMovie=this.randomMovie.bind(this);
     }
+
+
     componentDidMount(){
-        axios.get('/api/movies').then(response=>console.log(response.data));
+        this.randomMovie();
     }
+    randomMovie(){
+        axios.get('/api/movies').then(response=>{
+            let movie =response.data.results[Math.ceil(Math.random()*19)];
+            this.setState({
+                results:response.data.results,
+                name:movie.original_title,
+                description:movie.overview,
+                picture:movie.backdrop_path
+            })
+        }) 
+    }
+    
+
+
     render() {
         return (
             <div>
                 <Title/>
-                <RandomMovie/>
+                <RandomMovie originalTitle={this.state.name} picture={this.state.picture} overview={this.state.description} randomMovie={this.randomMovie} save={(state)=>{this.props.save(state)}}/>
             </div>
         );
     }

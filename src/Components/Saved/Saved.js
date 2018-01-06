@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
-import MovieCard from '../MovieCard/MovieCard'
+import MovieCard from '../MovieCard/MovieCard';
+import ReviewCard from '../ReviewCard/ReviewCard'
+import  './Saved.css'
 class Saved extends Component {
     constructor(props){
         super(props);
@@ -12,16 +14,22 @@ class Saved extends Component {
       /*  let savedMovies= this.state.saved.map((movie,index)=>{
             return(
                 <div>
-                    <button>Remove</button>
-                    <MovieCard/>
-                    <input type="text" placeholder="rate from 1-5" />
+                    <ReviewCard/>
                 </div>
             ) 
         })*/
         return (
             <div>
                 <h2>Your Saved Movies</h2>
-                <div>
+                <div className='savedMovies'>
+                    {this.props.savedMovies.map((x,i)=> {
+                        console.log(x)
+                        return(<ReviewCard key={i} name={x.name} description={x.description} picture={x.picture}/>)
+                    })}
+                    
+            
+                    
+
                     
                 </div>
                 

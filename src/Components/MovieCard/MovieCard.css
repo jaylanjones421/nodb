@@ -1,17 +1,12 @@
-.cardContainer{
-    height: 300px;
+.cardContainer {
+    height: 480px;
     width:300px;
     background-color: white;
     color:black;
     box-shadow: rgba(143, 143, 143, 0.57) 2px 2px 2px 2px inset;
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
-
-}
-.pic{
-    width: 250px;
-    height: 150px;
-    background-color: rgba(187, 127, 127, 0.27)
+    padding: 10px;
 }
