@@ -22,17 +22,18 @@ class ReviewCard extends Component {
                         Delete
                     </button>
                 </span>
-                <MovieCard name={this.props.name} pic={`https://image.tmdb.org/t/p/w300${this.props.picture}`} desc={this.props.description}/>
+                <MovieCard rating={this.props.rating} name={this.props.name} pic={`https://image.tmdb.org/t/p/w300${this.props.picture}`} desc={this.props.description}/>
                 
                 <div className="buttons">
-                <select name="rating" size='1' onSelect={console.log()}>
+                <select name="rating" size='1' onChange={
+                    (e)=>{this.props.addReview(e,this.props.identifier)}}>
                     <option value="1">1</option>
                     <option value="2">2</option>
                     <option value="3">3</option>
                     <option value="4">4</option>
                     <option value="5">5</option>
                 </select>
-                <span><button onClick={this.props.randomMovie} >Update</button></span>
+                <span><button onClick={this.props.addReview} >Update</button></span>
                 </div>
                 
             </div>

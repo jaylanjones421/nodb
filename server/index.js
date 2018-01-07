@@ -19,4 +19,4 @@ app.get(baseURL, (req,res)=>{
     })
 })
 
-app.listen(port, ()=>console.log(`the server is browsing memes on port ${port}`));
+app.listen(port, ()=>console.log(`Port ${port} says asuuhhhhhh duuuuuuuuhh`));

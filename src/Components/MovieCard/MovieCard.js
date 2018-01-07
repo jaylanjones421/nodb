@@ -13,6 +13,7 @@ class MovieCard extends Component {
                     <img src={this.props.pic} alt=""/>
                 </div>
                 <h2>{this.props.name}</h2>
+                <p>{this.props.rating}</p>
                 <p>{this.props.desc}</p>
                 
             </div>

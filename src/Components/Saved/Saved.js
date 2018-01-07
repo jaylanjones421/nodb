@@ -25,7 +25,7 @@ class Saved extends Component {
                 <div className='savedMovies'>
                     {this.props.savedMovies.map((x,i)=> {
                         console.log(x)
-                        return(<ReviewCard key={i} name={x.name} identifier={x.id} description={x.description} picture={x.picture} deleteMovie={(index)=>{this.props.deleteMovie(index)}}/>)
+                        return(<ReviewCard key={i} name={x.name} rating={x.rating} identifier={x.id} description={x.description} picture={x.picture} deleteMovie={this.props.deleteMovie} addReview={this.props.addReview}/>)
                     })}
                     
             

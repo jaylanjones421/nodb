@@ -18,6 +18,7 @@ class App extends Component {
     this.changeViewHome=this.changeViewHome.bind(this);
     this.changeViewSaved=this.changeViewSaved.bind(this);
     this.changeViewAbout=this.changeViewAbout.bind(this);
+    this.addReview=this.addReview.bind(this);
   }
   changeViewHome(e){
     this.setState({
@@ -47,7 +48,8 @@ class App extends Component {
         name:state.originalTitle,
         description:state.overview,
         picture:state.picture,
-        id: state.identifier
+        id: state.identifier,
+        rating:''
     }
     
     savedMovies.push(movie)
@@ -62,9 +64,24 @@ class App extends Component {
     }))
   })
   }
-  
+  addReview(e,index){
+    
+    let savedMovies = this.state.savedMovies;
+    let updatedMovies = savedMovies.map(movie=>{
+      if(movie.id===index){
+        movie.rating=e.target.value
+      }
+      return movie;
+    
+    });
+    this.setState({
+        savedMovies:updatedMovies
+    })
+
+  }
 
   render() {
+    console.log(this.state)
     return (
       <div className="App">
         <div className='NavBarContainer'>
@@ -74,7 +91,7 @@ class App extends Component {
         </div>
         {this.state.home && <Home save={(state)=> this.saveMovie(state)}/>}
        {this.state.about && <About />}
-       {this.state.saved && <Saved savedMovies={this.state.savedMovies} deleteMovie={this.deleteMovie}/>}
+       {this.state.saved && <Saved savedMovies={this.state.savedMovies} deleteMovie={this.deleteMovie} addReview={this.addReview}/>}
       </div>
     );
   }
