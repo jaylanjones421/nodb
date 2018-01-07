@@ -13,8 +13,8 @@ class App extends Component {
       saved: null,
       savedMovies:[]
     }
-
-    this.saveMovie=this.saveMovie.bind(this)
+    this.deleteMovie=this.deleteMovie.bind(this);
+    this.saveMovie=this.saveMovie.bind(this);
     this.changeViewHome=this.changeViewHome.bind(this);
     this.changeViewSaved=this.changeViewSaved.bind(this);
     this.changeViewAbout=this.changeViewAbout.bind(this);
@@ -46,18 +46,23 @@ class App extends Component {
     let movie ={
         name:state.originalTitle,
         description:state.overview,
-        picture:state.picture
+        picture:state.picture,
+        id: state.identifier
     }
     
     savedMovies.push(movie)
-    console.log(savedMovies)
     this.setState({
         savedMovies
     })
   };
-  deleteMovie(state,i){
-    
-  };
+  deleteMovie(index){
+    this.setState({
+    savedMovies: this.state.savedMovies.filter((x => {
+      return x.id !== index
+    }))
+  })
+  }
+  
 
   render() {
     return (
@@ -69,7 +74,7 @@ class App extends Component {
         </div>
         {this.state.home && <Home save={(state)=> this.saveMovie(state)}/>}
        {this.state.about && <About />}
-       {this.state.saved && <Saved savedMovies={this.state.savedMovies}/>}
+       {this.state.saved && <Saved savedMovies={this.state.savedMovies} deleteMovie={this.deleteMovie}/>}
       </div>
     );
   }

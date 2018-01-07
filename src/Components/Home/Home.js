@@ -12,7 +12,8 @@ class Home extends Component {
             name:'',
             description:'',
             picture:'',
-            saved:[]
+            saved:[],
+            id: ''
         }
         this.randomMovie=this.randomMovie.bind(this);
     }
@@ -28,18 +29,18 @@ class Home extends Component {
                 results:response.data.results,
                 name:movie.original_title,
                 description:movie.overview,
-                picture:movie.backdrop_path
+                picture:movie.backdrop_path,
+                id: movie.id
             })
         }) 
     }
     
 
-
     render() {
         return (
             <div>
                 <Title/>
-                <RandomMovie originalTitle={this.state.name} picture={this.state.picture} overview={this.state.description} randomMovie={this.randomMovie} save={(state)=>{this.props.save(state)}}/>
+                <RandomMovie originalTitle={this.state.name} picture={this.state.picture} overview={this.state.description} randomMovie={this.randomMovie} save={(state)=>{this.props.save(state)}} identifier={this.state.id}/>
             </div>
         );
     }

@@ -17,7 +17,11 @@ class ReviewCard extends Component {
         console.log(this.props)
         return (
             <div className='container'>
-                <span><button onClick={this.props.saveMovie}>Delete</button></span>
+                <span>
+                    <button onClick={() => {this.props.deleteMovie(this.props.identifier)}}>
+                        Delete
+                    </button>
+                </span>
                 <MovieCard name={this.props.name} pic={`https://image.tmdb.org/t/p/w300${this.props.picture}`} desc={this.props.description}/>
                 
                 <div className="buttons">
