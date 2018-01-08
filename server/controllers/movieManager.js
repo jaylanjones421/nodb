@@ -3,11 +3,21 @@ let id = 0;
 
 module.exports = {
   addMovie(req, res) {
-    const movie = req.body
-      movie.movieId = id
-      id ++;
-      movies.push(movie);
-      res.status(200).send(`${movie.title} added`);
+    let movie = {
+      name:req.body.movie.originalTitle,
+      description:req.body.movie.overview,
+      picture:req.body.movie.picture,
+      id:req.body.movie.identifier,
+      rating:''
+      }
+    movies.push(movie);
+    
+    res.send(movies)
+    // const movie = req.body
+    //   movie.movieId = id
+    //   id ++;
+    //   movies.push(movie);
+    //   res.status(200).send(`${movie.title} added`);
     },
 
   
@@ -15,25 +25,35 @@ module.exports = {
     res.status(200).send(movies);
   },
 
-  updateReview(req, res) {
-
-    const review = 'rate movie 1-5 stars';
-    const movieId = req.params.movieId;
-    movies = movies.map((movie) => {
-      if(movie.movieId == movieId) {
-        movie.review = review;
-        return movie;
+  updateRating(req, res) {
+    console.log(movies)
+    movies = movies.map(x=>{
+      if(x.id===req.body.index){
+        x.rating=req.body.event;
       }
-      return movie;
+      return x;
     });
+    console.log(movies)
+    res.send(movies)
+    // let savedMovies = this.state.savedMovies;
+    // let updatedMovies = savedMovies.map(movie=>{
+    //   if(movie.id===index){
+    //     movie.rating=e.target.value
+    //   }
+    //   return movie;
+    
+    // });
+    // this.setState({
+    //     savedMovies:updatedMovies
 
-    res.status(200).send();
   },
 
-  removeMovie(req, res) {
-    const movieId = req.params.movieId;
-    movies = movies.filter(movie => !(movie.movieId == movieId));
-    res.status(200).send(movies);
+  deleteMovie(req, res) {
+    movies = movies.filter(x => x.id !== Number(req.params.id));
+    res.send(movies);
+    // const movieId = req.params.movieId;
+    // movies = movies.filter(movie => !(movie.movieId == movieId));
+    // res.status(200).send(movies);
   }
 }
 ;

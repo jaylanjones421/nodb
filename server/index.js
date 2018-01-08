@@ -18,5 +18,9 @@ app.get(baseURL, (req,res)=>{
         return res.send(response.data);
     })
 })
+app.post(`${baseURL}/saved`,movieManager.addMovie);
+app.delete(`${baseURL}/delete/:id`,movieManager.deleteMovie);
+app.put(`${baseURL}/rating`,movieManager.updateRating);
+
 
 app.listen(port, ()=>console.log(`Port ${port} says asuuhhhhhh duuuuuuuuhh`));

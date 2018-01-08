@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import './App.css';
 import About from './Components/About/About';
-import Home from './Components/Home/Home'
-import Saved from './Components/Saved/Saved'
+import Home from './Components/Home/Home';
+import Saved from './Components/Saved/Saved';
+import axios from 'axios';
 
 class App extends Component {
   constructor() {
@@ -42,46 +43,63 @@ class App extends Component {
     })
   };
 
-  saveMovie(state){
-    let savedMovies = this.state.savedMovies
-    let movie ={
-        name:state.originalTitle,
-        description:state.overview,
-        picture:state.picture,
-        id: state.identifier,
-        rating:''
-    }
-    
-    savedMovies.push(movie)
-    this.setState({
-        savedMovies
+  saveMovie(currentMovie){
+    axios.post('/api/movies/saved',{movie:currentMovie}).then(response=>{
+      this.setState({
+        savedMovies: response.data
+      })
     })
+    // let savedMovies = this.state.savedMovies
+    // let movie ={
+    //     name:currentMovie.originalTitle,
+    //     description:currentMovie.overview,
+    //     picture:currentMovie.picture,
+    //     id:currentMovie.identifier,
+    //     rating:''
+    // }
+    
+    // savedMovies.push(movie)
+    // this.setState({
+    //     savedMovies
+    // })
   };
-  deleteMovie(index){
+  deleteMovie(identifier){
+    axios.delete(`/api/movies/delete/${identifier}`).then(response=>{
     this.setState({
-    savedMovies: this.state.savedMovies.filter((x => {
-      return x.id !== index
-    }))
-  })
-  }
-  addReview(e,index){
-    
-    let savedMovies = this.state.savedMovies;
-    let updatedMovies = savedMovies.map(movie=>{
-      if(movie.id===index){
-        movie.rating=e.target.value
-      }
-      return movie;
-    
-    });
-    this.setState({
-        savedMovies:updatedMovies
-    })
+      savedMovies: response.data
+    }
+    )}
+  )
 
-  }
+  //   this.setState({
+  //   savedMovies: this.state.savedMovies.filter((x => {
+  //     return x.id !== index
+  //   }))
+  // })
+  };
+  addReview(event,index){
+    axios.put(`/api/movies/rating`,{index,event:event.target.value}).then(response=>{
+    this.setState({
+      savedMovies: response.data
+    }
+    )
+    // let savedMovies = this.state.savedMovies;
+    // let updatedMovies = savedMovies.map(movie=>{
+    //   if(movie.id===index){
+    //     movie.rating=e.target.value
+    //   }
+    //   return movie;
+    
+    // });
+    // this.setState({
+    //     savedMovies:updatedMovies
+    // })
+
+  })
+};
 
   render() {
-    console.log(this.state)
+    console.log(this.state.savedMovies)
     return (
       <div className="App">
         <div className='NavBarContainer'>
